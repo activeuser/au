@@ -1,0 +1,28 @@
+{
+  "name": "au",
+  "version": "0.0.1",
+  "homepage": "http://activeuser.com",
+  "description": "ActiveUser command-line tool.",
+  "main": "lib/",
+  "bin": {
+    "au": "./bin/au"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/activeuser/au"
+  },
+  "keywords": [
+    "activeuser",
+    "chrome",
+    "extensions"
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/activeuser/au/blob/master/LICENSE"
+    }
+  ]
+}
