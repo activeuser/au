@@ -1,3 +1,11 @@
+{existsSync} = require './utils'
+{join} = require 'path'
+
+settingsPath = join process.env.HOME, '.config', '/au'
+
+if existsSync settingsPath
+  settings = require settingsPath or {}
+
 program = require('commander')
   .version(require('../package.json').version)
 
@@ -29,8 +37,10 @@ program
       when 'darwin'
         {exec} = require 'child_process'
         browser = opts.browser or 'Google\\ Chrome'
-        exec "pkill #{browser}", ->
+        exec "pkill #{browser}"
+        cb = ->
           exec "open -a #{browser} --args --load-extension=#{process.cwd()}"
+        setTimeout cb, 500
       else
         console.log 'Unable to install extensions on your platform'
 
