@@ -1,4 +1,7 @@
-program = require 'commander'
+program = require('commander')
+  .version(require('../package.json').version)
+
+help = -> console.log program.helpInformation()
 
 program
   .command('new [name]')
@@ -17,7 +20,19 @@ program
   .action (opts={}) ->
     require('./watch') opts
 
-help = -> console.log program.helpInformation()
+program
+  .command('install')
+  .description('install an app or extension')
+  .option('-b, --browser [location]', 'Path to browser to use')
+  .action (opts={}) ->
+    switch process.platform
+      when 'darwin'
+        {exec} = require 'child_process'
+        browser = opts.browser or 'Google\\ Chrome'
+        exec "pkill #{browser}", ->
+          exec "open -a #{browser} --args --load-extension=#{process.cwd()}"
+      else
+        console.log 'Unable to install extensions on your platform'
 
 program.parse process.argv
 
