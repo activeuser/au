@@ -1,8 +1,7 @@
 {existsSync} = require './utils'
 {join} = require 'path'
 
-settingsPath = join process.env.HOME, '.config', '/au'
-
+settingsPath = join process.env.HOME, '.config', 'au.json'
 if existsSync settingsPath
   settings = require settingsPath or {}
 
@@ -36,7 +35,7 @@ program
     switch process.platform
       when 'darwin'
         {exec} = require 'child_process'
-        browser = opts.browser or 'Google\\ Chrome'
+        browser = opts.browser or settings?.chrome?.location = 'Google\\ Chrome'
         exec "pkill #{browser}"
         cb = ->
           exec "open -a #{browser} --args --load-extension=#{process.cwd()}"
