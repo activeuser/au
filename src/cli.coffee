@@ -9,8 +9,13 @@ program
   .action (name, opts={}) ->
     if not name
       return console.log 'Name of project required'
-
     require('./generator') name, opts
+
+program
+  .command('watch [name]')
+  .description('watch for changes and reload')
+  .action (opts={}) ->
+    require('./watch') opts
 
 help = -> console.log program.helpInformation()
 
