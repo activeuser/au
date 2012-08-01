@@ -1,6 +1,7 @@
 fs      = require 'fs'
 mote    = require 'mote'
 wrench  = require 'wrench'
+init    = require './initializer'
 
 {basename, join} = require 'path'
 {encoding, exec, existsSync} = require './utils'
@@ -36,3 +37,5 @@ module.exports = (name, {config, template}) ->
       buffer = fs.readFileSync file
       template = mote.compile buffer.toString()
       fs.writeFileSync file, template ctx
+
+  init(name)

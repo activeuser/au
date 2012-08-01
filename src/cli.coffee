@@ -43,6 +43,12 @@ program
       else
         console.log 'Unable to install extensions on your platform'
 
+program
+  .command('init')
+  .description('add the ActiveUser SDK to an existing project')
+  .action ->
+    require('./initializer')()
+
 program.parse process.argv
 
 help() unless program.args.length
